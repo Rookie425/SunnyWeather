@@ -5,12 +5,16 @@ import android.content.Context;
 
 public class SunnyWeatherApplication extends Application {
 
-    public static Context context;
+    private static Context mContext;
     public static String TOKEN = "EYUJgpVe531bAKZX";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = getApplicationContext();
+        mContext = getApplicationContext();
+    }
+
+    public static Context getContext(){
+        return mContext;
     }
 }

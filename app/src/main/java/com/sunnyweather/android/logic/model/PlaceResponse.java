@@ -1,11 +1,18 @@
 package com.sunnyweather.android.logic.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 import java.util.Objects;
 
 public class PlaceResponse {
     String status;
     List<Place> places;
+
+    public PlaceResponse(String status, List<Place> places) {
+        this.status = status;
+        this.places = places;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -33,7 +40,17 @@ public class PlaceResponse {
 class Place{
     String name;
     Location location;
-    String formatted_address;
+
+    @SerializedName("formatted_address")
+    String address;
+
+    public Place(String name,
+                 Location location,
+                 String address) {
+        this.name = name;
+        this.location = location;
+        this.address = address;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -42,12 +59,12 @@ class Place{
         Place place = (Place) o;
         return name.equals(place.name) &&
                 location.equals(place.location) &&
-                formatted_address.equals(place.formatted_address);
+                address.equals(place.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, location, formatted_address);
+        return Objects.hash(name, location, address);
     }
 
     @Override
@@ -55,7 +72,7 @@ class Place{
         return "Place{" +
                 "name='" + name + '\'' +
                 ", location=" + location +
-                ", formatted_address='" + formatted_address + '\'' +
+                ", formatted_address='" + address + '\'' +
                 '}';
     }
 }
@@ -63,6 +80,11 @@ class Place{
 class Location{
     String lng;
     String lat;
+
+    public Location(String lng, String lat) {
+        this.lng = lng;
+        this.lat = lat;
+    }
 
     @Override
     public boolean equals(Object o) {
